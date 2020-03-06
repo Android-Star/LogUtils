@@ -1,8 +1,8 @@
 package com.example.logutils;
 
 import android.os.Bundle;
+import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
-import com.common.log.Log4jConfigure;
 import com.common.log.LogUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,7 +12,9 @@ public class MainActivity extends AppCompatActivity {
 
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    Log4jConfigure.configure();
+  }
+
+  public void onClick(View view) {
     LogUtils.getLogger(TAG).debug("============================level debug");
     LogUtils.getLogger(TAG).error("========================level error");
     LogUtils.getLogger(TAG).info("=================================level info");

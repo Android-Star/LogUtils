@@ -14,7 +14,8 @@ public class CustomLogConfigurator {
   private Level rootLevel = Level.DEBUG;
   private String filePattern = "%d{yyy-MM-dd HH:mm:ss} %p %t %l %m%n";
   private String logCatPattern = "%m%n";
-  private String fileName = "android-log4j.log";
+  private String fileName = "log_";
+  private String datePattern = "";
   private int maxBackupSize = 5;
   private long maxFileSize = 524288L;
   private boolean immediateFlush = true;
@@ -24,6 +25,7 @@ public class CustomLogConfigurator {
   private boolean resetConfiguration = false;
   private boolean internalDebugging = false;
   private int keepDays;
+  private DatePatternType datePatternType = DatePatternType.TOP_OF_DAY;
 
   public CustomLogConfigurator() {
   }
@@ -104,9 +106,9 @@ public class CustomLogConfigurator {
     Logger root = Logger.getRootLogger();
     PatternLayout fileLayout = new PatternLayout(this.getFilePattern());
     CustomDailyFileAppender dailyAppender = null;
+
     try {
-      dailyAppender =
-          new CustomDailyFileAppender(fileLayout, this.getFileName(), "yyyy-MM-dd'.log'");
+      dailyAppender = new CustomDailyFileAppender(fileLayout, this.getFileName(), datePattern);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -176,6 +178,9 @@ public class CustomLogConfigurator {
   }
 
   public void setUseFileAppender(boolean useFileAppender) {
+    if (useFileAppender) {
+      useDailyFileAppender = false;
+    }
     this.useFileAppender = useFileAppender;
   }
 
@@ -192,6 +197,9 @@ public class CustomLogConfigurator {
   }
 
   public void setUseDailyFileAppender(boolean useDailyFileAppender) {
+    if (useDailyFileAppender) {
+      useFileAppender = false;
+    }
     this.useDailyFileAppender = useDailyFileAppender;
   }
 
@@ -217,5 +225,38 @@ public class CustomLogConfigurator {
 
   public void setKeepDays(int keepDays) {
     this.keepDays = keepDays;
+  }
+
+  public DatePatternType getDatePatternType() {
+    return datePatternType;
+  }
+
+  public void setDatePatternType(DatePatternType datePatternType) {
+    this.datePatternType = datePatternType;
+    switch (datePatternType) {
+      case TOP_OF_TROUBLE:
+        datePattern = "";
+        break;
+      case TOP_OF_MINUTE:
+        datePattern = "yyyy-MM-dd-HH-mm'.txt'";
+        break;
+      case TOP_OF_HOUR:
+        datePattern = "yyyy-MM-dd-HH'.txt'";
+        break;
+      case HALF_DAY:
+        datePattern = "yyyy-MM-dd-a'.txt'";
+        break;
+      case TOP_OF_DAY:
+        datePattern = "yyyy-MM-dd'.txt'";
+        break;
+      case TOP_OF_WEEK:
+        datePattern = "yyyy-ww'.txt'";
+        break;
+      case TOP_OF_MONTH:
+        datePattern = "yyyy-MM'.txt'";
+        break;
+      default:
+        datePattern = "";
+    }
   }
 }

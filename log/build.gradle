@@ -6,7 +6,7 @@ publish {
   groupId = 'com.common.log'  //maven仓库下库的包名，一般为模块包名
   artifactId = 'LogUtils'   //项目名称
   repoName = "Maven"
-  publishVersion = '1.0.0'  //版本号
+  publishVersion = '1.0.1'  //版本号
   desc = 'custom log library for android' //项目介绍，可以不写
   website = ''  //项目主页，可以不写
 }

@@ -54,7 +54,6 @@ public class CustomDailyFileAppender extends FileAppender {
   public void activateOptions() {
     super.activateOptions();
     if (this.datePattern != null && this.fileName != null) {
-
       this.now.setTime(System.currentTimeMillis());
       this.sdf = new SimpleDateFormat(this.datePattern);
       int type = this.computeCheckPeriod();
@@ -118,8 +117,34 @@ public class CustomDailyFileAppender extends FileAppender {
     /*delete  before keepdays file*/
     Log.d(TAG, "rollOver  -> rollOver");
     if (keepDays != 0) {
-      String deleteFileName =
-          fileName + sdf.format(new Date(now.getTime() - keepDays * 24 * 60 * 60 * 1000));
+      String deleteFileName;
+      switch (rc.getType()) {
+        case TOP_OF_MINUTE:
+          deleteFileName = fileName + sdf.format(new Date(now.getTime() - keepDays * 60 * 1000));
+          break;
+        case TOP_OF_HOUR:
+          deleteFileName =
+              fileName + sdf.format(new Date(now.getTime() - keepDays * 60 * 60 * 1000));
+          break;
+        case HALF_DAY:
+          deleteFileName =
+              fileName + sdf.format(new Date(now.getTime() - keepDays * 12 * 60 * 60 * 1000));
+          break;
+        case TOP_OF_DAY:
+          deleteFileName =
+              fileName + sdf.format(new Date(now.getTime() - keepDays * 24 * 60 * 60 * 1000));
+          break;
+        case TOP_OF_WEEK:
+          deleteFileName =
+              fileName + sdf.format(new Date(now.getTime() - keepDays * 7 * 24 * 60 * 60 * 1000));
+          break;
+        case TOP_OF_MONTH:
+          deleteFileName =
+              fileName + sdf.format(new Date(now.getTime() - keepDays * 30 * 24 * 60 * 60 * 1000));
+          break;
+        default:
+          throw new IllegalStateException("Unknown periodicity type.");
+      }
       File target = new File(deleteFileName);
       if (target.exists()) {
         target.delete();
@@ -199,6 +224,10 @@ public class CustomDailyFileAppender extends FileAppender {
 
     void setType(int type) {
       this.type = type;
+    }
+
+    int getType() {
+      return this.type;
     }
 
     public long getNextCheckMillis(Date now) {
