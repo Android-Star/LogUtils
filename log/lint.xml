@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+  <issue id="InvalidPackage">
+    <ignore path="org.apache.log4j.chainsaw.ControlPanel.Main.1"/>
+    <ignore path="org.apache.log4j.chainsaw.ControlPanel"/>
+    <ignore path="org.apache.log4j.net.JMSAppender"/>
+    <ignore path="D:\DemoAndroidStudioProjects\LogUtils\log\libs\log4j-1.2.17.jar"/>
+  </issue>
+</lint>
