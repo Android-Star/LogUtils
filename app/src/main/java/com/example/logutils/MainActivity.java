@@ -21,5 +21,11 @@ public class MainActivity extends AppCompatActivity {
     LogUtils.getLogger(TAG).warn("================================level warn");
     LogUtils.getLogger(TAG).fatal("================================level fatal");
     LogUtils.getLogger(TAG).trace("================================level trace");
+
+    LogUtils.d(TAG,"我是日志信息");
+    LogUtils.w(TAG,"我是日志信息");
+    LogUtils.e(TAG,"我是日志信息");
+    LogUtils.i(TAG,"我是日志信息");
+    LogUtils.f(TAG,"我是日志信息");
   }
 }

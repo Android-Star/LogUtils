@@ -253,6 +253,20 @@ public class LogUtils {
     }
   }
 
+  public static void f(String tag, String message) {
+    if (SWITCH_LOG) {
+      Logger LOGGER = getLogger(tag);
+      LOGGER.fatal(message);
+    }
+  }
+
+  public static void f(String tag, String message, Throwable exception) {
+    if (SWITCH_LOG) {
+      Logger LOGGER = getLogger(tag);
+      LOGGER.fatal(message, exception);
+    }
+  }
+
   public static Logger getLogger(String tag) {
     Logger logger;
     if (TextUtils.isEmpty(tag)) {
