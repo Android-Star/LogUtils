@@ -3,23 +3,23 @@
 `implementation 'com.common.log:LogUtils:1.0.3'`
 -------
 ## 初始化：
-**1.默认配置**\n
+**1.默认配置**<br/>
 `LogUtils.getInstance(this).init();`
 默认配置包括：
 
--fileName:log_
+- fileName:log_
 
--路径：sdcard根目录+包名（sd卡不可用：data/data/包名/files）
+- 路径：sdcard根目录+包名（sd卡不可用：data/data/包名/files）
 
--默认会输出日志到logcat
+- 默认会输出日志到logcat
 
--默认使用按天生成日志规则，保留七天的日志信息
+- 默认使用按天生成日志规则，保留七天的日志信息
 
--默认打印的日志level：Level.DEBUG
+- 默认打印的日志level：Level.DEBUG
 
--默认输出的日志信息："%d{yyy-MM-dd HH:mm:ss} %p %t %l %m%n"（日期+等级+线程+日志发生位置+信息）
+- 默认输出的日志信息："%d{yyy-MM-dd HH:mm:ss} %p %t %l %m%n"（日期+等级+线程+日志发生位置+信息）
 
-**示例：2020-03-09 10:50:10 WARN main com.example.logutils.MainActivity.onClick(MainActivity.java:21) ================================level warn**
+**示例：<br/>2020-03-09 10:50:10 WARN main com.example.logutils.MainActivity.onClick(MainActivity.java:21) ================================level warn**<br/>
 
 **2.自定义配置：**
 ```
