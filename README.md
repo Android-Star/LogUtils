@@ -1,9 +1,9 @@
-#LogUtils#
-##引用：##
+# LogUtils
+## 引用：
 `implementation 'com.common.log:LogUtils:1.0.3'`
 -------
-##初始化：
-**1.默认配置**
+## 初始化：
+**1.默认配置**\n
 `LogUtils.getInstance(this).init();`
 默认配置包括：
 
