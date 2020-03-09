@@ -5,7 +5,9 @@ implementation 'com.common.log:LogUtils:1.0.3'
 `
 ## 初始化：
 **1.默认配置**<br/>
-`LogUtils.getInstance(this).init();`
+`
+LogUtils.getInstance(this).init();
+`<br/>
 默认配置包括：
 
 - fileName:log_
